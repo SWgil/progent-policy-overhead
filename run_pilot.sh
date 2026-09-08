@@ -5,16 +5,26 @@
 # 0.6B and a 4B policy model - and prints what is needed to decide whether the
 # full experiment is worth running. Roughly an hour on a single consumer GPU.
 #
-# Prerequisite: an Ollama server with qwen3:4b and qwen3:0.6b pulled, and
-# OLLAMA_MAX_LOADED_MODELS=2 so the agent and policy models stay resident.
-# Without that, Ollama swaps them on every alternation and the per-stage
-# latency numbers measure model loading rather than inference.
+# Prerequisite: an Ollama server with the models below pulled, plus
+#   OLLAMA_MAX_LOADED_MODELS=2   agent and policy models stay resident;
+#                                otherwise Ollama swaps them on every
+#                                alternation and the per-stage latencies
+#                                measure model loading, not inference.
+#   OLLAMA_CONTEXT_LENGTH=8192   the default 4096 silently truncates: the
+#                                banking tool schemas alone are ~1.2k tokens
+#                                before any history.
+#
+# Qwen2.5 rather than Qwen3 throughout. Qwen3 thinks by default, the schema
+# constraint only covers `content` so it does not suppress that, `think` is
+# not reachable over the OpenAI-compatible endpoint, and there is no
+# instruct variant below 4B - so a Qwen3 ladder would confound model size
+# with whether the model reasons out loud.
 
 set -euo pipefail
 cd "$(dirname "$0")"
 
 export LOCAL_BASE_URL="${LOCAL_BASE_URL:-http://127.0.0.1:11434/v1}"
-export LOCAL_MODEL="${LOCAL_MODEL:-qwen3:4b}"   # the agent, held fixed
+export LOCAL_MODEL="${LOCAL_MODEL:-qwen2.5:7b}"   # the agent, held fixed
 export AGENT_MODEL="${AGENT_MODEL:-qwen-local}"
 export SECAGENT_JSON_MODE=True
 
@@ -24,8 +34,8 @@ export USER_TASKS="${USER_TASKS:-user_task_0 user_task_1 user_task_3 user_task_5
 # Two direct-action injections - the clearest signal that an attack landed.
 export INJECTION_TASKS="${INJECTION_TASKS:-injection_task_4 injection_task_5}"
 
-POLICY_SMALL="${POLICY_SMALL:-qwen3:0.6b}"
-POLICY_LARGE="${POLICY_LARGE:-qwen3:4b}"
+POLICY_SMALL="${POLICY_SMALL:-qwen2.5:0.5b}"
+POLICY_LARGE="${POLICY_LARGE:-qwen2.5:7b}"
 
 banner() { echo; echo "############ $* ############"; echo; }
 

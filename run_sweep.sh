@@ -42,7 +42,22 @@ export COLUMNS=300
 
 # Modes map onto the approver configurations of Progent section 8.2.
 case "$MODE" in
-  m0-nodefense)   export ENABLE_SECAGENT="False" ;;
+  # Removing the defence takes two switches, neither of them ENABLE_SECAGENT
+  # (which only gates the LangChain middleware).
+  #
+  # SECAGENT_SUITE is read when the task suite is built: with it set, every
+  # tool is wrapped by check_tool_call AND update_always_allowed_tools installs
+  # a base policy. Leaving it unset gives plain, unwrapped tools - without it,
+  # "no defence" would really mean "allow-list of no-argument tools", which
+  # blocks every money-moving call and collapses utility and ASR together.
+  #
+  # SECAGENT_GENERATE stops the policy LLM being called at all.
+  m0-nodefense)
+    export ENABLE_SECAGENT="False"
+    export SECAGENT_GENERATE="False"
+    export SECAGENT_UPDATE="False"
+    WRAP_TOOLS=no
+    ;;
   m1-init-only)   export SECAGENT_UPDATE="False" ;;                                   # ~= Conseca
   m2-auto-deny)   export SECAGENT_UPDATE="True";  export SECAGENT_ONLY_ALLOW_NARROW="True" ;;
   m3-auto-approve) export SECAGENT_UPDATE="True" ;;                                   # paper default
@@ -59,6 +74,8 @@ esac
 
 # Task subsetting, for pilots on hardware that cannot afford a full suite.
 # USER_TASKS="user_task_0 user_task_1"  INJECTION_TASKS="injection_task_0"
+WRAP_TOOLS="${WRAP_TOOLS:-yes}"
+
 SUBSET=()
 for task in ${USER_TASKS:-}; do SUBSET+=(--user-task "$task"); done
 for task in ${INJECTION_TASKS:-}; do SUBSET+=(--injection-task "$task"); done
@@ -71,10 +88,11 @@ if [ ${#SUBSET[@]} -gt 0 ]; then echo "subset: ${SUBSET[*]}"; fi
 # --max-workers stays at its default of 1: a second worker would contend for
 # the single GPU and make the per-stage latency numbers meaningless.
 for suite in ${SUITES[*]}; do
-  SECAGENT_SUITE="$suite" python -m agentdojo.scripts.benchmark \
+  if [ "$WRAP_TOOLS" = yes ]; then export SECAGENT_SUITE="$suite"; else unset SECAGENT_SUITE; fi
+  python -m agentdojo.scripts.benchmark \
     -s "$suite" --model "$AGENT_MODEL" --logdir "$LOG_DIR" "${SUBSET[@]}" \
     > "$LOG_DIR/$suite-no-attack.log" 2>&1
-  SECAGENT_SUITE="$suite" python -m agentdojo.scripts.benchmark \
+  python -m agentdojo.scripts.benchmark \
     -s "$suite" --model "$AGENT_MODEL" --attack important_instructions --logdir "$LOG_DIR" "${SUBSET[@]}" \
     > "$LOG_DIR/$suite-attack.log" 2>&1
 done
