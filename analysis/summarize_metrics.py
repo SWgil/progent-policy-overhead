@@ -27,6 +27,10 @@ STAGE_LABEL = {
 
 def iter_events(paths):
     for path in paths:
+        if not os.path.exists(path):
+            # Correct for an undefended arm: no policy LLM ran, so no file.
+            print("no metrics at %s" % path, file=sys.stderr)
+            continue
         with open(path, encoding="utf-8") as handle:
             for lineno, line in enumerate(handle, 1):
                 line = line.strip()
@@ -112,7 +116,7 @@ def main():
     rows, checks = summarize(iter_events(paths), group_keys)
     if not rows:
         print("no policy LLM events found", file=sys.stderr)
-        return 1
+        return 0
 
     total_seconds = sum(r["seconds"] for r in rows.values()) + checks["seconds"]
 

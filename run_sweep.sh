@@ -98,4 +98,6 @@ for suite in ${SUITES[*]}; do
 done
 
 echo "done: $TAG"
-python analysis/summarize_metrics.py "$SECAGENT_METRICS_PATH" --group stage
+# Reporting only - an undefended arm has no metrics file, and that must not
+# abort the sweep under `set -e`.
+python analysis/summarize_metrics.py "$SECAGENT_METRICS_PATH" --group stage || true

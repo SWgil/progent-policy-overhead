@@ -265,7 +265,10 @@ def api_request(sys_prompt, user_prompt, temperature=0.0, stage=None) -> str:
     global total_completion_tokens, total_prompt_tokens
     stage = stage or _current_stage
     provider = instrument.provider_for(policy_model)
-    json_mode = instrument.json_mode_enabled()
+    # Only the stages that answer with a policy get the envelope imposed on
+    # them. The update gate answers Yes or No; constraining that to the policy
+    # schema asks for a shape the answer does not have.
+    json_mode = instrument.json_mode_enabled() and instrument.stage_expects_policy(stage)
     if json_mode:
         sys_prompt = sys_prompt + instrument.JSON_MODE_SUFFIX
 
@@ -355,6 +358,9 @@ def api_request(sys_prompt, user_prompt, temperature=0.0, stage=None) -> str:
             kwargs.update(instrument.request_kwargs_for(
                 resolve_structured_mode(client, provider)
             ))
+        cap = instrument.max_policy_tokens()
+        if cap:
+            kwargs["max_tokens"] = cap
         chat_completion = client.chat.completions.create(**kwargs)
         usage = getattr(chat_completion, "usage", None)
         if usage is not None:

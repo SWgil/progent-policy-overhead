@@ -269,6 +269,28 @@ def looks_like_envelope(text):
     return isinstance(parsed, list)
 
 
+#: Stages whose answer is a policy. `update_gate` is not one of them - it asks
+#: whether an update is worth attempting and answers Yes or No, so imposing the
+#: policy envelope on it asks the model for a shape its answer does not have.
+#: A small model handed that contradiction generates until it hits a cap.
+POLICY_PRODUCING_STAGES = ("init", "update_gen")
+
+
+def stage_expects_policy(stage):
+    return stage in POLICY_PRODUCING_STAGES
+
+
+def max_policy_tokens():
+    """Ceiling on a single policy response.
+
+    A runaway generation is otherwise bounded only by the server's own limit -
+    observed at 81,920 tokens for one call, which is minutes of GPU time and
+    enough to swamp every latency number in the run.
+    """
+    raw = os.getenv("SECAGENT_MAX_POLICY_TOKENS", "4096")
+    return None if raw.lower() in ("", "0", "none") else int(raw)
+
+
 def request_kwargs_for(mode):
     """Extra request fields that impose `mode` on an OpenAI-compatible call."""
     if mode == "guided_json":

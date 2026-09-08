@@ -24,6 +24,8 @@ set -euo pipefail
 cd "$(dirname "$0")"
 
 export LOCAL_BASE_URL="${LOCAL_BASE_URL:-http://127.0.0.1:11434/v1}"
+# run_sweep.sh derives this per arm, but P1 runs the probe directly.
+export SECAGENT_POLICY_BASE_URL="$LOCAL_BASE_URL"
 export LOCAL_MODEL="${LOCAL_MODEL:-qwen2.5:7b}"   # the agent, held fixed
 export AGENT_MODEL="${AGENT_MODEL:-qwen-local}"
 export SECAGENT_JSON_MODE=True
