@@ -196,6 +196,70 @@ def _openai_client(provider):
     return OpenAI()
 
 
+def resolve_structured_mode(client, provider) -> str:
+    """Decide how to constrain the policy envelope on this server.
+
+    Servers disagree: vLLM takes `guided_json`, Ollama takes its own `format`
+    field, hosted OpenAI takes `response_format`. Rather than infer it from the
+    model id - which says nothing about what is serving it - `auto` asks the
+    server, once per process, with a throwaway request per candidate and keeps
+    the strongest mode that comes back without an error.
+
+    This matters more than it looks. Whether the envelope is enforced decides
+    whether a small model's bad policy can be read as a security failure or
+    only as a formatting one, so the answer belongs in the run's metadata
+    rather than in an assumption.
+    """
+    pinned = instrument.resolved_mode()
+    if pinned is not None:
+        return pinned
+
+    mode = instrument.structured_mode()
+    if mode != "auto":
+        instrument.set_resolved_mode(mode)
+        return mode
+
+    if provider != "local":
+        # Hosted OpenAI has no guided decoding, and the policy `args` field is
+        # an arbitrary JSON Schema that strict json_schema cannot express.
+        instrument.set_resolved_mode("json_object")
+        return "json_object"
+
+    if not instrument.guided_decoding_enabled():
+        instrument.set_resolved_mode("json_object")
+        return "json_object"
+
+    for candidate in instrument.AUTO_ORDER:
+        # Ask for prose while imposing the constraint. A server that merely
+        # ignores an unknown field answers in prose; only one that actually
+        # constrains decoding still returns the envelope. Testing for an
+        # absent error instead would accept every mode, since unknown request
+        # fields are dropped silently rather than rejected.
+        try:
+            completion = client.chat.completions.create(
+                messages=[
+                    {"role": "system", "content": instrument.ENFORCEMENT_PROBE_SYS},
+                    {"role": "user", "content": instrument.ENFORCEMENT_PROBE_USR},
+                ],
+                model=policy_model,
+                temperature=0.0,
+                **instrument.request_kwargs_for(candidate),
+            )
+        except Exception as exc:
+            print(f"[structured] {candidate} rejected: {exc!r:.120}", file=sys.stderr)
+            continue
+        if not instrument.looks_like_envelope(completion.choices[0].message.content or ""):
+            print(f"[structured] {candidate} accepted but not enforced", file=sys.stderr)
+            continue
+        print(f"[structured] using {candidate}", file=sys.stderr)
+        instrument.set_resolved_mode(candidate)
+        return candidate
+
+    print("[structured] no constraint accepted; prompting only", file=sys.stderr)
+    instrument.set_resolved_mode("off")
+    return "off"
+
+
 def api_request(sys_prompt, user_prompt, temperature=0.0, stage=None) -> str:
     """Issue one policy LLM call and record its cost against `stage`."""
     global total_completion_tokens, total_prompt_tokens
@@ -288,13 +352,9 @@ def api_request(sys_prompt, user_prompt, temperature=0.0, stage=None) -> str:
         if not instrument.send_seed():
             kwargs.pop("seed", None)
         if json_mode:
-            if provider == "local" and instrument.guided_decoding_enabled():
-                # vLLM constrains the envelope during decoding, which is
-                # stronger than JSON mode: it rules out shape failures, not
-                # just syntax failures.
-                kwargs["extra_body"] = {"guided_json": instrument.POLICY_JSON_SCHEMA}
-            else:
-                kwargs["response_format"] = {"type": "json_object"}
+            kwargs.update(instrument.request_kwargs_for(
+                resolve_structured_mode(client, provider)
+            ))
         chat_completion = client.chat.completions.create(**kwargs)
         usage = getattr(chat_completion, "usage", None)
         if usage is not None:
@@ -317,6 +377,7 @@ def api_request(sys_prompt, user_prompt, temperature=0.0, stage=None) -> str:
             "completion_tokens": completion_tokens,
             "temperature": temperature,
             "json_mode": json_mode,
+            "structured_mode": instrument.resolved_mode(),
             "error": error,
         })
 

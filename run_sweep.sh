@@ -57,16 +57,25 @@ case "$MODE" in
   *) echo "unknown mode: $MODE" >&2; exit 1 ;;
 esac
 
+# Task subsetting, for pilots on hardware that cannot afford a full suite.
+# USER_TASKS="user_task_0 user_task_1"  INJECTION_TASKS="injection_task_0"
+SUBSET=()
+for task in ${USER_TASKS:-}; do SUBSET+=(--user-task "$task"); done
+for task in ${INJECTION_TASKS:-}; do SUBSET+=(--injection-task "$task"); done
+
 echo "mode=$MODE policy=$POLICY_MODEL agent=$AGENT_MODEL suites=${SUITES[*]}"
 echo "local server: $AGENTDOJO_LOCAL_BASE_URL (model $AGENTDOJO_LOCAL_MODEL)"
 echo "metrics -> $SECAGENT_METRICS_PATH"
+if [ ${#SUBSET[@]} -gt 0 ]; then echo "subset: ${SUBSET[*]}"; fi
 
+# --max-workers stays at its default of 1: a second worker would contend for
+# the single GPU and make the per-stage latency numbers meaningless.
 for suite in ${SUITES[*]}; do
   SECAGENT_SUITE="$suite" python -m agentdojo.scripts.benchmark \
-    -s "$suite" --model "$AGENT_MODEL" --logdir "$LOG_DIR" \
+    -s "$suite" --model "$AGENT_MODEL" --logdir "$LOG_DIR" "${SUBSET[@]}" \
     > "$LOG_DIR/$suite-no-attack.log" 2>&1
   SECAGENT_SUITE="$suite" python -m agentdojo.scripts.benchmark \
-    -s "$suite" --model "$AGENT_MODEL" --attack important_instructions --logdir "$LOG_DIR" \
+    -s "$suite" --model "$AGENT_MODEL" --attack important_instructions --logdir "$LOG_DIR" "${SUBSET[@]}" \
     > "$LOG_DIR/$suite-attack.log" 2>&1
 done
 

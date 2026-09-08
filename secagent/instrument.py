@@ -207,12 +207,90 @@ POLICY_JSON_SCHEMA = {
 }
 
 
-def guided_decoding_enabled():
-    """Constrain the envelope with vLLM's guided decoding rather than JSON mode.
+#: How the policy envelope is constrained. Servers disagree here, and the
+#: choice decides whether a small model's failure can be read as a security
+#: failure or only as a formatting one - so it is explicit rather than implied.
+#:
+#: guided_json    vLLM: the schema is enforced during decoding.
+#: ollama_format  Ollama's native `format` field, passed through /v1.
+#: json_object    OpenAI-style JSON mode. Guarantees syntax, not shape.
+#: off            No constraint; the model is asked in the prompt only.
+STRUCTURED_MODES = (
+    "guided_json",     # vLLM extra_body
+    "json_schema",     # OpenAI-style response_format with a schema
+    "ollama_format",   # Ollama native `format` passed through /v1
+    "json_object",     # plain JSON mode: syntax only
+    "off",
+)
 
-    Plain JSON mode only guarantees syntactically valid JSON. A 7B policy model
-    fails more often on the shape than on the syntax, so on a local server the
-    schema is enforced during decoding instead - this is what keeps a format
-    failure from being mistaken for a security-reasoning failure.
+#: Tried in this order by `auto`, strongest constraint first.
+AUTO_ORDER = ("guided_json", "json_schema", "ollama_format", "json_object")
+
+_resolved_mode = None
+
+
+def structured_mode():
+    """The configured mode, or 'auto' to be settled against the live server."""
+    mode = os.getenv("SECAGENT_STRUCTURED_MODE", "auto").strip().lower()
+    if mode not in STRUCTURED_MODES and mode != "auto":
+        raise ValueError(
+            "SECAGENT_STRUCTURED_MODE must be one of %s or 'auto', got %r"
+            % (", ".join(STRUCTURED_MODES), mode)
+        )
+    return mode
+
+
+def set_resolved_mode(mode):
+    """Pin the mode that `auto` settled on, so it is decided once per run."""
+    global _resolved_mode
+    _resolved_mode = mode
+
+
+def resolved_mode():
+    return _resolved_mode
+
+
+#: A prompt that fights the schema, used to tell an enforced constraint from an
+#: ignored one. Servers drop unknown request fields silently rather than
+#: rejecting them, so "the call succeeded" proves nothing.
+ENFORCEMENT_PROBE_SYS = (
+    "Answer in one short English sentence of plain prose. "
+    "Do not use JSON. Do not use braces or brackets."
+)
+ENFORCEMENT_PROBE_USR = "What is the capital of France?"
+
+
+def looks_like_envelope(text):
+    """Whether `text` parses as the policy envelope, empty or not."""
+    try:
+        parsed = unwrap_policies(json.loads(text))
+    except Exception:
+        return False
+    return isinstance(parsed, list)
+
+
+def request_kwargs_for(mode):
+    """Extra request fields that impose `mode` on an OpenAI-compatible call."""
+    if mode == "guided_json":
+        return {"extra_body": {"guided_json": POLICY_JSON_SCHEMA}}
+    if mode == "json_schema":
+        return {
+            "response_format": {
+                "type": "json_schema",
+                "json_schema": {"name": "policy", "schema": POLICY_JSON_SCHEMA},
+            }
+        }
+    if mode == "ollama_format":
+        return {"extra_body": {"format": POLICY_JSON_SCHEMA}}
+    if mode == "json_object":
+        return {"response_format": {"type": "json_object"}}
+    return {}
+
+
+def guided_decoding_enabled():
+    """Backwards-compatible switch for the vLLM path.
+
+    Kept so an existing SECAGENT_GUIDED_JSON=False still turns the strongest
+    constraint off without having to know about the mode names.
     """
     return os.getenv("SECAGENT_GUIDED_JSON", "True").lower() == "true"
