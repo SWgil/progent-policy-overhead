@@ -11,8 +11,10 @@ import json
 from jsonschema import validate
 from .utils import extract_json
 from .policy_analysis import security_policy_subset_check
+from . import instrument
 import os
 import copy
+import time
 
 LANGCHAIN_AVAILABLE = True
 try:
@@ -38,8 +40,25 @@ init_user_query = None
 # policy_model = "gpt-4o-mini-2024-07-18"
 # policy_model = "meta-llama/Llama-3.3-70B-Instruct"
 # policy_model = "Qwen/Qwen2.5-72B-Instruct"
-policy_model = os.getenv("SECAGENT_POLICY_MODEL", "gpt-4o-2024-08-06")
-print(f"Policy Model: {policy_model}", file=sys.stderr)
+policy_model = instrument.BASE_POLICY_MODEL
+_current_stage = "init"
+
+
+def _set_stage(stage: str) -> None:
+    """Point `policy_model` at the model configured for `stage`.
+
+    Provider selection in `api_request` and the per-model prompt formatting in
+    `get_SYS_PROMPT`/`get_SYS_PROMPT_2` all read the module-level
+    `policy_model`, so switching it here routes a whole stage without touching
+    those branches. With no per-stage env vars set, every stage resolves to
+    SECAGENT_POLICY_MODEL and behaviour is unchanged.
+    """
+    global policy_model, _current_stage
+    _current_stage = stage
+    policy_model = instrument.stage_model(stage)
+
+
+print(f"Policy Model routing: {instrument.routing_summary()}", file=sys.stderr)
 ignore_update_error = os.getenv("SECAGENT_IGNORE_UPDATE_ERROR", "False").lower() == "true"
 generate_policy = os.getenv('SECAGENT_GENERATE', "True").lower() == "true"
 enable_secagent = os.getenv("ENABLE_SECAGENT", "False").lower() == "true"
@@ -164,97 +183,143 @@ total_completion_tokens = 0
 total_prompt_tokens = 0
 
 
-def api_request(sys_prompt, user_prompt, temperature=0.0) -> None:
-    global total_completion_tokens, total_prompt_tokens
-    if policy_model.startswith("claude"):
-        from anthropic import Anthropic
-        client = Anthropic()
-        message = client.messages.create(
-            system=sys_prompt,
-            messages=[
-                {"role": "user", "content": user_prompt}
-            ],
-            model=policy_model,
-            temperature=temperature,
-            max_tokens=16384,
-        )
-        # print(message)
-        # total_completion_tokens += message.usage.output_tokens
-        # total_prompt_tokens += message.usage.input_tokens
-        # print("[Policy] tokens (completion, prompt): ", message.usage.output_tokens, message.usage.input_tokens,
-        #       "total (completion, prompt): ", total_completion_tokens, total_prompt_tokens, file=sys.stderr)
-        return message.content[0].text
-    if policy_model.startswith("gemini"):
-        import vertexai.generative_models as genai
-        vertexai_model = genai.GenerativeModel(
-            model_name=policy_model,
-            system_instruction=genai.Part.from_text(text=sys_prompt),
-        )
-        response = vertexai_model.generate_content(
-            [genai.Content(
-                role="user",
-                parts=[genai.Part.from_text(user_prompt)],
-            )],
-            generation_config=genai.GenerationConfig(temperature=temperature),
-        )
-        return response.text
+def _openai_client(provider):
+    """Client for the active policy model.
+
+    Locally served models go to SECAGENT_POLICY_BASE_URL with a placeholder
+    key, so no API credentials are needed to run the study; hosted OpenAI
+    models use the default endpoint and OPENAI_API_KEY.
+    """
     from openai import OpenAI
-    if policy_model.startswith("meta-llama/") or policy_model.startswith("Qwen/"):
-        client = OpenAI(base_url="http://127.0.0.1:8000/v1", api_key="EMPTY")
-    else:
-        client = OpenAI()
-    if policy_model.startswith("o1") or policy_model.startswith("o3"):
-        chat_completion = client.chat.completions.create(
-            messages=[
-                {
-                    "role": "developer",
-                    "content": sys_prompt,
-                },
-                {
-                    "role": "user",
-                    "content": user_prompt,
-                }
-            ],
-            model=policy_model,
-            seed=0,
-        )
-    if policy_model.startswith("vertex_ai/"):
-        chat_completion = client.chat.completions.create(
-            messages=[
-                {
-                    "role": "system",
-                    "content": sys_prompt,
-                },
-                {
-                    "role": "user",
-                    "content": user_prompt,
-                }
-            ],
-            model=policy_model,
-            temperature=temperature,
-        )
-    else:
-        chat_completion = client.chat.completions.create(
-            messages=[
-                {
-                    "role": "system",
-                    "content": sys_prompt,
-                },
-                {
-                    "role": "user",
-                    "content": user_prompt,
-                }
-            ],
-            model=policy_model,
-            temperature=temperature,
-            seed=0,
-        )
-    # print(chat_completion)
-    # total_completion_tokens += chat_completion.usage.completion_tokens
-    # total_prompt_tokens += chat_completion.usage.prompt_tokens
-    # print("[Policy] tokens (completion, prompt): ", chat_completion.usage.completion_tokens, chat_completion.usage.prompt_tokens,
-    #       "total (completion, prompt): ", total_completion_tokens, total_prompt_tokens, file=sys.stderr)
-    return chat_completion.choices[0].message.content
+    if provider == "local":
+        return OpenAI(base_url=instrument.base_url(), api_key="EMPTY")
+    return OpenAI()
+
+
+def api_request(sys_prompt, user_prompt, temperature=0.0, stage=None) -> str:
+    """Issue one policy LLM call and record its cost against `stage`."""
+    global total_completion_tokens, total_prompt_tokens
+    stage = stage or _current_stage
+    provider = instrument.provider_for(policy_model)
+    json_mode = instrument.json_mode_enabled()
+    if json_mode:
+        sys_prompt = sys_prompt + instrument.JSON_MODE_SUFFIX
+
+    started = time.perf_counter()
+    prompt_tokens = 0
+    completion_tokens = 0
+    error = None
+    text = None
+    try:
+        if provider == "anthropic":
+            from anthropic import Anthropic
+            client = Anthropic()
+            message = client.messages.create(
+                system=sys_prompt,
+                messages=[
+                    {"role": "user", "content": user_prompt}
+                ],
+                model=policy_model,
+                temperature=temperature,
+                max_tokens=16384,
+            )
+            prompt_tokens = message.usage.input_tokens
+            completion_tokens = message.usage.output_tokens
+            text = message.content[0].text
+            return text
+
+        if provider == "gemini":
+            import vertexai.generative_models as genai
+            vertexai_model = genai.GenerativeModel(
+                model_name=policy_model,
+                system_instruction=genai.Part.from_text(text=sys_prompt),
+            )
+            generation_config = genai.GenerationConfig(
+                temperature=temperature,
+                **({"response_mime_type": "application/json"} if json_mode else {}),
+            )
+            response = vertexai_model.generate_content(
+                [genai.Content(
+                    role="user",
+                    parts=[genai.Part.from_text(user_prompt)],
+                )],
+                generation_config=generation_config,
+            )
+            usage = getattr(response, "usage_metadata", None)
+            if usage is not None:
+                prompt_tokens = getattr(usage, "prompt_token_count", 0) or 0
+                completion_tokens = getattr(usage, "candidates_token_count", 0) or 0
+            text = response.text
+            return text
+
+        client = _openai_client(provider)
+        # Reasoning models take the system prompt in the "developer" role.
+        # Upstream used a bare `if` here followed by an `if/else`, so this
+        # branch's result was silently overwritten (and the call paid for
+        # twice) for every o1/o3 model; `elif` is what was intended.
+        if policy_model.startswith("o1") or policy_model.startswith("o3"):
+            kwargs = dict(
+                messages=[
+                    {"role": "developer", "content": sys_prompt},
+                    {"role": "user", "content": user_prompt},
+                ],
+                model=policy_model,
+                seed=0,
+            )
+        elif policy_model.startswith("vertex_ai/"):
+            kwargs = dict(
+                messages=[
+                    {"role": "system", "content": sys_prompt},
+                    {"role": "user", "content": user_prompt},
+                ],
+                model=policy_model,
+                temperature=temperature,
+            )
+        else:
+            kwargs = dict(
+                messages=[
+                    {"role": "system", "content": sys_prompt},
+                    {"role": "user", "content": user_prompt},
+                ],
+                model=policy_model,
+                temperature=temperature,
+                seed=0,
+            )
+        if not instrument.send_seed():
+            kwargs.pop("seed", None)
+        if json_mode:
+            if provider == "local" and instrument.guided_decoding_enabled():
+                # vLLM constrains the envelope during decoding, which is
+                # stronger than JSON mode: it rules out shape failures, not
+                # just syntax failures.
+                kwargs["extra_body"] = {"guided_json": instrument.POLICY_JSON_SCHEMA}
+            else:
+                kwargs["response_format"] = {"type": "json_object"}
+        chat_completion = client.chat.completions.create(**kwargs)
+        usage = getattr(chat_completion, "usage", None)
+        if usage is not None:
+            prompt_tokens = usage.prompt_tokens
+            completion_tokens = usage.completion_tokens
+        text = chat_completion.choices[0].message.content
+        return text
+    except Exception as exc:
+        error = repr(exc)
+        raise
+    finally:
+        total_prompt_tokens += prompt_tokens
+        total_completion_tokens += completion_tokens
+        instrument.record({
+            "kind": "policy_llm",
+            "stage": stage,
+            "model": policy_model,
+            "seconds": time.perf_counter() - started,
+            "prompt_tokens": prompt_tokens,
+            "completion_tokens": completion_tokens,
+            "temperature": temperature,
+            "json_mode": json_mode,
+            "error": error,
+        })
+
 
 
 POLICY_SUGGESTIONS = """Do not use any information you cannot find in the user's query. This is very important and you must keep it in mind. For example, if the user's query only mentions the name but does not include complete numbers or email addresses, you should not include them in the policy.
@@ -305,10 +370,14 @@ def get_SYS_PROMPT() -> str:
         sys_prompt = SYS_PROMPT_ASB
     else:
         sys_prompt = SYS_PROMPT
+    provider = instrument.provider_for(policy_model)
     output_formater = ""
-    if policy_model.startswith("o1") or policy_model.startswith("o3") or policy_model.startswith("gpt-4.1") or policy_model.startswith("gemini") or policy_model.startswith("meta-llama/") or policy_model.startswith("Qwen/") or policy_model.startswith("vertex_ai/gemini"):
+    # Models that do not reliably emit a bare JSON array need the shape spelled
+    # out. Locally served models are keyed off the provider rather than the id,
+    # since the id is whatever `vllm serve` was pointed at.
+    if provider == "local" or policy_model.startswith(("o1", "o3", "gpt-4.1", "gemini", "vertex_ai/gemini")):
         output_formater = "\nOutput format: ```json [{\"name\": tool_name, \"args\": restrictions}, ...] ```"
-    if policy_model.startswith("claude") or policy_model.startswith("vertex_ai/claude"):
+    if provider == "anthropic" or policy_model.startswith("vertex_ai/claude"):
         sys_prompt = sys_prompt[:-1]
         output_formater = " with json block. You only need to output the restrictions and do not need to include other fields like description, title."
     return sys_prompt+output_formater
@@ -355,21 +424,62 @@ Output whether you want to update the policy start with Yes or No. If Yes, outpu
 
 def get_SYS_PROMPT_2() -> str:
     sys_prompt = SYS_PROMPT_2
+    provider = instrument.provider_for(policy_model)
     output_formater = ""
     if policy_model.startswith("o1") or policy_model.startswith("o3"):
         output_formater = "\nThe policy should be in JSON format: ```json [{\"name\": tool_name, \"args\": restrictions}, ...] ```"
     if policy_model.startswith("gpt-4.1"):
         output_formater = "\nThe policy should be in JSON format including the json code block: ```json [{\"name\": tool_name, \"args\": restrictions}, ...] ```"
-    if policy_model.startswith("claude"):
+    if provider == "anthropic":
         sys_prompt = sys_prompt[:-1]
         output_formater = " with json block."
     if policy_model.startswith("gpt-4o-mini"):
         sys_prompt = sys_prompt[:-1]
         output_formater = " with json block. It should be an array of dictionaries like {\"name\": tool_name, \"args\": restrictions}."
-    if policy_model.startswith("gemini") or policy_model.startswith("meta-llama/") or policy_model.startswith("Qwen/"):
+    if provider in ("local", "gemini"):
         sys_prompt = sys_prompt[:-1]
         output_formater = " with json code block. It should be an array of dictionaries like {\"name\": tool_name, \"args\": restrictions}."
     return sys_prompt+output_formater
+
+
+def _parse_policy(res, stage, attempt):
+    """Parse a policy response, recording whether it parsed.
+
+    Upstream retries a failed parse with a raised temperature, so without this
+    record the cost of a badly-formatted model is invisible: it shows up only
+    as extra latency and tokens with no indication of the cause. `attempt` is
+    the retry index, so a model that only succeeds on its third try is
+    distinguishable from one that succeeds immediately.
+    """
+    try:
+        parsed = extract_json(
+            res, enforce_code_block=instrument.provider_for(policy_model) == "anthropic"
+        )
+    except Exception as exc:
+        instrument.record({
+            "kind": "policy_parse",
+            "stage": stage,
+            "model": policy_model,
+            "attempt": attempt,
+            "ok": False,
+            "error": repr(exc),
+        })
+        raise
+    parsed = instrument.unwrap_policies(parsed)
+    shape_ok = parsed is None or (
+        isinstance(parsed, list)
+        and all(isinstance(item, dict) and "name" in item and "args" in item for item in parsed)
+    )
+    instrument.record({
+        "kind": "policy_parse",
+        "stage": stage,
+        "model": policy_model,
+        "attempt": attempt,
+        "ok": True,
+        "shape_ok": shape_ok,
+        "empty": parsed is None,
+    })
+    return parsed
 
 
 def generate_security_policy(query: str, manual_check=False) -> None:
@@ -381,14 +491,12 @@ def generate_security_policy(query: str, manual_check=False) -> None:
         print("SECAGENT_GENERATE is set to False, skip generating security policy.", file=sys.stderr)
         return
     content = "TOOLS: "+json.dumps(get_available_tools())+"\nUSER_QUERY: "+query
+    _set_stage("init")
     while True:
         try:
-            res = api_request(get_SYS_PROMPT(), content, temperature)
+            res = api_request(get_SYS_PROMPT(), content, temperature, stage="init")
             print(content, file=sys.stderr)
-            if policy_model.startswith("claude"):
-                generated_policy = extract_json(res, enforce_code_block=True)
-            else:
-                generated_policy = extract_json(res)
+            generated_policy = _parse_policy(res, "init", counter)
             if manual_check:
                 print(f"The generated security policy is: {generated_policy}.\nDo you want to apply it?[y/N]", file=sys.stderr, end='', flush=True)
                 if input().strip().lower() != "y":
@@ -418,9 +526,10 @@ def decide_whether_to_update(tool_call_param) -> bool:
     content = "TOOLS: "+json.dumps(get_available_tools()) + \
         "\nUSER_QUERY: "+init_user_query + \
         "\nTOOL_CALL_PARAM: "+json.dumps(tool_call_param)
+    _set_stage("update_gate")
     while True:
         try:
-            res = api_request(SYS_PROMPT_UPDATE, content, temperature)
+            res = api_request(SYS_PROMPT_UPDATE, content, temperature, stage="update_gate")
             # with open("tmp_output.txt", "a") as f:
             #     f.write(content + "\n")
             #     f.write(res + "\n")
@@ -444,14 +553,12 @@ def generate_update_security_policy(tool_call_param, tool_call_result, manual_ch
     current_policy = get_generated_policy()
     content = "TOOLS: "+json.dumps(get_available_tools())+"\nUSER_QUERY: "+query+"\nTOOL_CALL_PARAM: "+json.dumps(tool_call_param) + \
         "\nTOOL_CALL_RESULT: "+tool_call_result+"\nCURRENT_RESTRICTIONS: "+json.dumps(current_policy)
+    _set_stage("update_gen")
     while True:
         try:
-            res = api_request(get_SYS_PROMPT_2(), content, temperature)
+            res = api_request(get_SYS_PROMPT_2(), content, temperature, stage="update_gen")
             print(content, file=sys.stderr)
-            if policy_model.startswith("claude"):
-                generated_policy = extract_json(res, enforce_code_block=True)
-            else:
-                generated_policy = extract_json(res)
+            generated_policy = _parse_policy(res, "update_gen", counter)
             if generated_policy is None:
                 return
             if manual_check:
@@ -575,19 +682,20 @@ def check_tool_call(tool_name, kwargs) -> None:
     if security_policy is None:
         print("Warning: security policy is not set.", file=sys.stderr)
         return
-    try:
-        policies = security_policy.get(tool_name, None)
-        if policies is None or len(policies) == 0:
-            raise ValidationError(f"The tool '{tool_name}' is not allowed.")
-        if len(policies) == 0:
-            return
-        need_update_policies = _check_tool_call(tool_name, kwargs, policies)
-        if need_update_policies:
-            for tool, policies in need_update_policies.items():
-                security_policy[tool] = policies
-            sort_policy()
-    except Exception as e:
-        raise ValidationError(f"{e}. Please try other tools or arguments and continue to finish the user task: {init_user_query}.")
+    with instrument.timer("policy_check", tool=tool_name):
+        try:
+            policies = security_policy.get(tool_name, None)
+            if policies is None or len(policies) == 0:
+                raise ValidationError(f"The tool '{tool_name}' is not allowed.")
+            if len(policies) == 0:
+                return
+            need_update_policies = _check_tool_call(tool_name, kwargs, policies)
+            if need_update_policies:
+                for tool, policies in need_update_policies.items():
+                    security_policy[tool] = policies
+                sort_policy()
+        except Exception as e:
+            raise ValidationError(f"{e}. Please try other tools or arguments and continue to finish the user task: {init_user_query}.")
 
 
 if LANGCHAIN_AVAILABLE:  # tested on langchain==1.0.2 langchain-core==1.0.1 langchain-mcp-adapters==0.1.12

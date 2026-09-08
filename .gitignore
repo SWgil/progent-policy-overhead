@@ -1,1 +1,7 @@
 *.pyc
+
+# study harness: local venv, benchmark logs and generated metrics
+.venv/
+logs/
+metrics/
+__pycache__/

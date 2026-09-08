@@ -54,6 +54,13 @@ class ModelsEnum(StrEnum):
     """Gemini 2.0 Flash 001"""
     GEMINI_2_5_FLASH = "gemini-2.5-flash"
     """Gemini 2.5 Flash"""
+    QWEN_LOCAL = "qwen-local"
+    """A locally served model (Qwen by default) reached over an OpenAI-compatible
+    endpoint, using the server's native tool calling."""
+    QWEN_LOCAL_PROMPTING = "qwen-local-prompting"
+    """The same local server, but with tool calls elicited by prompting instead
+    of the native function-calling API - for servers launched without a tool
+    call parser."""
 
 MODEL_PROVIDERS = {
     ModelsEnum.GPT_4O_2024_05_13: "openai",
@@ -82,10 +89,14 @@ MODEL_PROVIDERS = {
     ModelsEnum.GEMINI_2_0_FLASH_EXP: "google",
     ModelsEnum.GEMINI_2_0_FLASH_001: "google",
     ModelsEnum.GEMINI_2_5_FLASH: "google",
+    ModelsEnum.QWEN_LOCAL: "local",
+    ModelsEnum.QWEN_LOCAL_PROMPTING: "local-prompting",
 }
 
 
 MODEL_NAMES = {
+    "qwen-local": "AI assistant",
+    "qwen-local-prompting": "AI assistant",
     "gpt-4.1-2025-04-14": "GPT-4.1",
     "gpt-4o-2024-08-06": "GPT-4",
     "gpt-4o-2024-05-13": "GPT-4",
@@ -113,3 +124,29 @@ MODEL_NAMES = {
     "gemini-2.0-flash-001": "AI model developed by Google",
     "gemini-2.5-flash": "AI model developed by Google",
 }
+
+
+#: Model id the local server actually answers to. The enum values above are
+#: stable aliases so benchmark logs stay comparable across runs; this is what
+#: gets put on the wire, and must match `vllm serve <id>`.
+LOCAL_MODEL_ID_ENV = "AGENTDOJO_LOCAL_MODEL"
+DEFAULT_LOCAL_MODEL_ID = "Qwen/Qwen3-8B"
+
+#: Where the local OpenAI-compatible server is listening.
+LOCAL_BASE_URL_ENV = "AGENTDOJO_LOCAL_BASE_URL"
+DEFAULT_LOCAL_BASE_URL = "http://127.0.0.1:8000/v1"
+
+
+def resolve_model_id(model: str) -> str:
+    """Map a local alias to the id the server expects; pass others through."""
+    import os
+
+    if model in (ModelsEnum.QWEN_LOCAL, ModelsEnum.QWEN_LOCAL_PROMPTING):
+        return os.getenv(LOCAL_MODEL_ID_ENV, DEFAULT_LOCAL_MODEL_ID)
+    return model
+
+
+def local_base_url() -> str:
+    import os
+
+    return os.getenv(LOCAL_BASE_URL_ENV, DEFAULT_LOCAL_BASE_URL)

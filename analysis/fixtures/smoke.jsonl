@@ -1,0 +1,280 @@
+{"kind": "policy_llm", "stage": "init", "model": "gpt-4o-2024-08-06", "seconds": 1.55, "prompt_tokens": 1800, "completion_tokens": 260, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.2792404, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "init", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.2792404, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.2802405, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 1.6000000000043757e-06, "tool": "send_money", "ts": 1788846292.2802405, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.2812414, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 8.999999999981245e-07, "tool": "send_money", "ts": 1788846292.2812414, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.2812414, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 6.000000000033756e-07, "tool": "send_money", "ts": 1788846292.2822416, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.2822416, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 6.000000000033756e-07, "tool": "send_money", "ts": 1788846292.2822416, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "seconds": 1.7, "prompt_tokens": 2600, "completion_tokens": 340, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.2832417, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.2832417, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "seconds": 1.7, "prompt_tokens": 2600, "completion_tokens": 340, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.2832417, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.284242, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "init", "model": "gpt-4o-2024-08-06", "seconds": 1.55, "prompt_tokens": 1800, "completion_tokens": 260, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.284242, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "init", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.284242, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.285242, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 6.000000000033756e-07, "tool": "send_money", "ts": 1788846292.285242, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.285242, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 5.000000000005e-07, "tool": "send_money", "ts": 1788846292.2862415, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.2862415, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 6.000000000033756e-07, "tool": "send_money", "ts": 1788846292.2862415, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.2872424, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 5.999999999894978e-07, "tool": "send_money", "ts": 1788846292.2872424, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "seconds": 1.7, "prompt_tokens": 2600, "completion_tokens": 340, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.2872424, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.2882426, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "seconds": 1.7, "prompt_tokens": 2600, "completion_tokens": 340, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.2882426, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.2882426, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "init", "model": "gpt-4o-2024-08-06", "seconds": 1.55, "prompt_tokens": 1800, "completion_tokens": 260, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.2882426, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "init", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.2892425, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.2892425, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 5.999999999894978e-07, "tool": "send_money", "ts": 1788846292.2892425, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.2902431, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 1.000000000001e-06, "tool": "send_money", "ts": 1788846292.2902431, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.2912436, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 5.000000000005e-07, "tool": "send_money", "ts": 1788846292.2912436, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.2912436, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 8.000000000091267e-07, "tool": "send_money", "ts": 1788846292.2922432, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "seconds": 1.7, "prompt_tokens": 2600, "completion_tokens": 340, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.2922432, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.2922432, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "seconds": 1.7, "prompt_tokens": 2600, "completion_tokens": 340, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.2932441, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.2932441, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "init", "model": "gpt-4o-2024-08-06", "seconds": 1.55, "prompt_tokens": 1800, "completion_tokens": 260, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.2932441, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "init", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.2942443, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.2942443, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 8.999999999981245e-07, "tool": "send_money", "ts": 1788846292.2942443, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.2952437, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 6.000000000033756e-07, "tool": "send_money", "ts": 1788846292.2952437, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.2952437, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 6.000000000033756e-07, "tool": "send_money", "ts": 1788846292.2952437, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.2962446, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 6.000000000033756e-07, "tool": "send_money", "ts": 1788846292.2962446, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "seconds": 1.7, "prompt_tokens": 2600, "completion_tokens": 340, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.2962446, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.2972448, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "seconds": 1.7, "prompt_tokens": 2600, "completion_tokens": 340, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.2972448, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.2972448, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "init", "model": "gpt-4o-2024-08-06", "seconds": 1.55, "prompt_tokens": 1800, "completion_tokens": 260, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.2982454, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "init", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.2982454, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.2982454, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 6.000000000033756e-07, "tool": "send_money", "ts": 1788846292.299246, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.299246, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 5.000000000005e-07, "tool": "send_money", "ts": 1788846292.299246, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3002455, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 6.000000000033756e-07, "tool": "send_money", "ts": 1788846292.3002455, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3002455, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 6.000000000033756e-07, "tool": "send_money", "ts": 1788846292.3012455, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "seconds": 1.7, "prompt_tokens": 2600, "completion_tokens": 340, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3012455, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.3012455, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "seconds": 1.7, "prompt_tokens": 2600, "completion_tokens": 340, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3012455, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.3022456, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "init", "model": "gpt-4o-2024-08-06", "seconds": 1.55, "prompt_tokens": 1800, "completion_tokens": 260, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3022456, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "init", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.3022456, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3032465, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 6.000000000172534e-07, "tool": "send_money", "ts": 1788846292.3032465, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3032465, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 5.999999999894978e-07, "tool": "send_money", "ts": 1788846292.3042464, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3042464, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 6.000000000172534e-07, "tool": "send_money", "ts": 1788846292.3042464, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.305247, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 5.999999999894978e-07, "tool": "send_money", "ts": 1788846292.305247, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "seconds": 1.7, "prompt_tokens": 2600, "completion_tokens": 340, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.305247, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.306246, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "seconds": 1.7, "prompt_tokens": 2600, "completion_tokens": 340, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.306246, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.306246, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "init", "model": "gpt-4o-2024-08-06", "seconds": 1.55, "prompt_tokens": 1800, "completion_tokens": 260, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3072476, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "init", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.3072476, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3082473, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 1.2000000000067512e-06, "tool": "send_money", "ts": 1788846292.3082473, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3082473, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 5.000000000143778e-07, "tool": "send_money", "ts": 1788846292.3092477, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3092477, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 5.999999999894978e-07, "tool": "send_money", "ts": 1788846292.3092477, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.310247, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 6.000000000172534e-07, "tool": "send_money", "ts": 1788846292.310247, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "seconds": 1.7, "prompt_tokens": 2600, "completion_tokens": 340, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.310247, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.3112493, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "seconds": 1.7, "prompt_tokens": 2600, "completion_tokens": 340, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3112493, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.3112493, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "init", "model": "gpt-4o-2024-08-06", "seconds": 1.55, "prompt_tokens": 1800, "completion_tokens": 260, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3122485, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "init", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.3122485, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3122485, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 5.999999999894978e-07, "tool": "send_money", "ts": 1788846292.3122485, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3132489, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 6.000000000172534e-07, "tool": "send_money", "ts": 1788846292.3132489, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3132489, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 5.999999999894978e-07, "tool": "send_money", "ts": 1788846292.314249, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.314249, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 5.999999999894978e-07, "tool": "send_money", "ts": 1788846292.314249, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "seconds": 1.7, "prompt_tokens": 2600, "completion_tokens": 340, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3152487, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.3152487, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "seconds": 1.7, "prompt_tokens": 2600, "completion_tokens": 340, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3152487, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.3162484, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "init", "model": "gpt-4o-2024-08-06", "seconds": 1.55, "prompt_tokens": 1800, "completion_tokens": 260, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3162484, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "init", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.3172495, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3172495, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 1.4000000000125024e-06, "tool": "send_money", "ts": 1788846292.3172495, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3172495, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 5.999999999894978e-07, "tool": "send_money", "ts": 1788846292.3182487, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3182487, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 5.000000000143778e-07, "tool": "send_money", "ts": 1788846292.3182487, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3192496, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 4.999999999866223e-07, "tool": "send_money", "ts": 1788846292.3192496, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "seconds": 1.7, "prompt_tokens": 2600, "completion_tokens": 340, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3192496, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.3202498, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "seconds": 1.7, "prompt_tokens": 2600, "completion_tokens": 340, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3202498, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.3202498, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "init", "model": "gpt-4o-2024-08-06", "seconds": 1.55, "prompt_tokens": 1800, "completion_tokens": 260, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3212502, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "init", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.3212502, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3212502, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 7.00000000020129e-07, "tool": "send_money", "ts": 1788846292.322251, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.322251, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 5.999999999894978e-07, "tool": "send_money", "ts": 1788846292.322251, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.323251, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 4.999999999866223e-07, "tool": "send_money", "ts": 1788846292.323251, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.323251, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 6.000000000172534e-07, "tool": "send_money", "ts": 1788846292.324251, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "seconds": 1.7, "prompt_tokens": 2600, "completion_tokens": 340, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.324251, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.324251, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "seconds": 1.7, "prompt_tokens": 2600, "completion_tokens": 340, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.324251, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.325251, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "init", "model": "gpt-4o-2024-08-06", "seconds": 1.55, "prompt_tokens": 1800, "completion_tokens": 260, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.325251, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "init", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.325251, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3262513, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 6.000000000172534e-07, "tool": "send_money", "ts": 1788846292.3262513, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3262513, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 5.999999999894978e-07, "tool": "send_money", "ts": 1788846292.3272517, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3272517, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 5.999999999894978e-07, "tool": "send_money", "ts": 1788846292.3272517, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.328253, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 5.000000000143778e-07, "tool": "send_money", "ts": 1788846292.328253, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "seconds": 1.7, "prompt_tokens": 2600, "completion_tokens": 340, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.328253, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.3292513, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "seconds": 1.7, "prompt_tokens": 2600, "completion_tokens": 340, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3292513, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.3292513, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "init", "model": "gpt-4o-2024-08-06", "seconds": 1.55, "prompt_tokens": 1800, "completion_tokens": 260, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.330252, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "init", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.330252, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.330252, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 6.000000000172534e-07, "tool": "send_money", "ts": 1788846292.330252, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3312523, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 5.999999999894978e-07, "tool": "send_money", "ts": 1788846292.3312523, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3312523, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 5.999999999894978e-07, "tool": "send_money", "ts": 1788846292.3322523, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3322523, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 4.999999999866223e-07, "tool": "send_money", "ts": 1788846292.3322523, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "seconds": 1.7, "prompt_tokens": 2600, "completion_tokens": 340, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.333253, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.333253, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "seconds": 1.7, "prompt_tokens": 2600, "completion_tokens": 340, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.333253, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.334253, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "init", "model": "gpt-4o-2024-08-06", "seconds": 1.55, "prompt_tokens": 1800, "completion_tokens": 260, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.334253, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "init", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.334253, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3352535, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 5.999999999894978e-07, "tool": "send_money", "ts": 1788846292.3352535, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3352535, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 7.00000000020129e-07, "tool": "send_money", "ts": 1788846292.3362534, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3362534, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 5.000000000143778e-07, "tool": "send_money", "ts": 1788846292.3362534, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3372533, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 4.999999999866223e-07, "tool": "send_money", "ts": 1788846292.3372533, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "seconds": 1.7, "prompt_tokens": 2600, "completion_tokens": 340, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3372533, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.3372533, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "seconds": 1.7, "prompt_tokens": 2600, "completion_tokens": 340, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.338254, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.338254, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "init", "model": "gpt-4o-2024-08-06", "seconds": 1.55, "prompt_tokens": 1800, "completion_tokens": 260, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.338254, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "init", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.339254, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.339254, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 8.000000000230045e-07, "tool": "send_money", "ts": 1788846292.339254, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.340254, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 7.99999999995249e-07, "tool": "send_money", "ts": 1788846292.340254, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3412545, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 6.000000000172534e-07, "tool": "send_money", "ts": 1788846292.3412545, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3412545, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 4.999999999866223e-07, "tool": "send_money", "ts": 1788846292.3422544, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "seconds": 1.7, "prompt_tokens": 2600, "completion_tokens": 340, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3422544, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.3422544, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "seconds": 1.7, "prompt_tokens": 2600, "completion_tokens": 340, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3422544, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.343255, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "init", "model": "gpt-4o-2024-08-06", "seconds": 1.55, "prompt_tokens": 1800, "completion_tokens": 260, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.343255, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "init", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.343255, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3442552, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 5.999999999894978e-07, "tool": "send_money", "ts": 1788846292.3442552, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3442552, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 5.000000000143778e-07, "tool": "send_money", "ts": 1788846292.3452556, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3452556, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 4.999999999866223e-07, "tool": "send_money", "ts": 1788846292.3452556, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3462558, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 7.99999999995249e-07, "tool": "send_money", "ts": 1788846292.3462558, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "seconds": 1.7, "prompt_tokens": 2600, "completion_tokens": 340, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3462558, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.3472552, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "seconds": 1.7, "prompt_tokens": 2600, "completion_tokens": 340, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3472552, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.3472552, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "init", "model": "gpt-4o-2024-08-06", "seconds": 1.55, "prompt_tokens": 1800, "completion_tokens": 260, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3482566, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "init", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.3482566, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3482566, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 7.99999999995249e-07, "tool": "send_money", "ts": 1788846292.3482566, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.349257, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 5.999999999894978e-07, "tool": "send_money", "ts": 1788846292.349257, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.349257, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 6.000000000172534e-07, "tool": "send_money", "ts": 1788846292.3502562, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3502562, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 4.999999999866223e-07, "tool": "send_money", "ts": 1788846292.3502562, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "seconds": 1.7, "prompt_tokens": 2600, "completion_tokens": 340, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3512568, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.3512568, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "seconds": 1.7, "prompt_tokens": 2600, "completion_tokens": 340, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3512568, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.352257, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "init", "model": "gpt-4o-2024-08-06", "seconds": 1.55, "prompt_tokens": 1800, "completion_tokens": 260, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.352257, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "init", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.352257, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3532574, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 6.999999999923734e-07, "tool": "send_money", "ts": 1788846292.3532574, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3532574, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 5.999999999894978e-07, "tool": "send_money", "ts": 1788846292.3542573, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3542573, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 4.999999999866223e-07, "tool": "send_money", "ts": 1788846292.3542573, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3552575, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 5.999999999894978e-07, "tool": "send_money", "ts": 1788846292.3552575, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "seconds": 1.7, "prompt_tokens": 2600, "completion_tokens": 340, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3552575, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.3552575, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "seconds": 1.7, "prompt_tokens": 2600, "completion_tokens": 340, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3562577, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.3562577, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "init", "model": "gpt-4o-2024-08-06", "seconds": 1.55, "prompt_tokens": 1800, "completion_tokens": 260, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3562577, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "init", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.357258, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.357258, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 5.999999999894978e-07, "tool": "send_money", "ts": 1788846292.357258, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3582585, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 6.000000000172534e-07, "tool": "send_money", "ts": 1788846292.3582585, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3582585, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 6.000000000172534e-07, "tool": "send_money", "ts": 1788846292.3592587, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3592587, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 5.999999999894978e-07, "tool": "send_money", "ts": 1788846292.3592587, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "seconds": 1.7, "prompt_tokens": 2600, "completion_tokens": 340, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3602593, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.3602593, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "seconds": 1.7, "prompt_tokens": 2600, "completion_tokens": 340, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3602593, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.3612585, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "init", "model": "gpt-4o-2024-08-06", "seconds": 1.55, "prompt_tokens": 1800, "completion_tokens": 260, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3612585, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "init", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.3612585, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3622584, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 5.999999999894978e-07, "tool": "send_money", "ts": 1788846292.3622584, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3622584, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 5.999999999894978e-07, "tool": "send_money", "ts": 1788846292.3622584, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3632598, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 4.999999999866223e-07, "tool": "send_money", "ts": 1788846292.3632598, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3632598, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 5.999999999894978e-07, "tool": "send_money", "ts": 1788846292.3642595, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "seconds": 1.7, "prompt_tokens": 2600, "completion_tokens": 340, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3642595, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.3642595, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "seconds": 1.7, "prompt_tokens": 2600, "completion_tokens": 340, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.36526, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.36526, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "init", "model": "gpt-4o-2024-08-06", "seconds": 1.55, "prompt_tokens": 1800, "completion_tokens": 260, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.36526, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "init", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.3662603, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3662603, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 8.999999999981245e-07, "tool": "send_money", "ts": 1788846292.3662603, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3672605, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 6.000000000172534e-07, "tool": "send_money", "ts": 1788846292.3672605, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.3672605, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 4.999999999866223e-07, "tool": "send_money", "ts": 1788846292.368261, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gate", "model": "gpt-4o-2024-08-06", "seconds": 0.95, "prompt_tokens": 1500, "completion_tokens": 12, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.368261, "run_tag": "smoke"}
+{"kind": "policy_check", "seconds": 6.000000000172534e-07, "tool": "send_money", "ts": 1788846292.368261, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "seconds": 1.7, "prompt_tokens": 2600, "completion_tokens": 340, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.369261, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.369261, "run_tag": "smoke"}
+{"kind": "policy_llm", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "seconds": 1.7, "prompt_tokens": 2600, "completion_tokens": 340, "temperature": 0.0, "json_mode": false, "error": null, "ts": 1788846292.369261, "run_tag": "smoke"}
+{"kind": "policy_parse", "stage": "update_gen", "model": "gpt-4o-2024-08-06", "attempt": 0, "ok": true, "shape_ok": true, "empty": false, "ts": 1788846292.370261, "run_tag": "smoke"}

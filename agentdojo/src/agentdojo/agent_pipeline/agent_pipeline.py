@@ -26,7 +26,7 @@ from agentdojo.agent_pipeline.tool_execution import (
 )
 from agentdojo.functions_runtime import EmptyEnv, Env, FunctionsRuntime
 from agentdojo.logging import Logger
-from agentdojo.models import MODEL_PROVIDERS, ModelsEnum
+from agentdojo.models import MODEL_PROVIDERS, ModelsEnum, local_base_url, resolve_model_id
 from agentdojo.types import ChatMessage
 
 TOOL_FILTER_PROMPT = (
@@ -77,6 +77,16 @@ def get_llm(provider: str, model: str) -> BasePipelineElement:
             base_url="http://localhost:8000/v1",
         )
         llm = LocalLLM(client, model)
+    elif provider == "local":
+        # A locally served model over an OpenAI-compatible endpoint, using the
+        # server's native tool calling (vLLM: --enable-auto-tool-choice).
+        client = openai.OpenAI(api_key="EMPTY", base_url=local_base_url())
+        llm = OpenAILLM(client, resolve_model_id(model))
+    elif provider == "local-prompting":
+        # Same server, but tool calls are elicited by prompting - for servers
+        # launched without a tool call parser.
+        client = openai.OpenAI(api_key="EMPTY", base_url=local_base_url())
+        llm = LocalLLM(client, resolve_model_id(model))
     elif provider == "cohere":
         client = cohere.Client()
         llm = CohereLLM(client, model)
