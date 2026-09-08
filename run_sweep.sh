@@ -24,7 +24,10 @@ AGENT_MODEL="${AGENT_MODEL:-qwen-local}"
 # side; they point at the same endpoint unless deliberately split.
 export AGENTDOJO_LOCAL_MODEL="${LOCAL_MODEL:-Qwen/Qwen3-8B}"
 export AGENTDOJO_LOCAL_BASE_URL="${LOCAL_BASE_URL:-http://127.0.0.1:8000/v1}"
-export SECAGENT_POLICY_BASE_URL="${LOCAL_BASE_URL:-http://127.0.0.1:8000/v1}"
+# Follows the agent's endpoint unless set explicitly, which is how the policy
+# model gets served from a second server - the way to pair a large agent with a
+# small policy model when they will not fit on one device.
+export SECAGENT_POLICY_BASE_URL="${SECAGENT_POLICY_BASE_URL:-${LOCAL_BASE_URL:-http://127.0.0.1:8000/v1}}"
 TAG="$(echo "${MODE}_${POLICY_MODEL}" | tr '/.:' '___')"
 LOG_DIR="logs/$TAG"
 mkdir -p "$LOG_DIR" metrics
