@@ -128,13 +128,13 @@ MODEL_NAMES = {
 
 #: Model id the local server actually answers to. The enum values above are
 #: stable aliases so benchmark logs stay comparable across runs; this is what
-#: gets put on the wire, and must match `vllm serve <id>`.
+#: gets put on the wire, and must match the name Ollama lists in `ollama ps`.
 LOCAL_MODEL_ID_ENV = "AGENTDOJO_LOCAL_MODEL"
-DEFAULT_LOCAL_MODEL_ID = "Qwen/Qwen3-8B"
+DEFAULT_LOCAL_MODEL_ID = "qwen3.8:27b"
 
 #: Where the local OpenAI-compatible server is listening.
 LOCAL_BASE_URL_ENV = "AGENTDOJO_LOCAL_BASE_URL"
-DEFAULT_LOCAL_BASE_URL = "http://127.0.0.1:8000/v1"
+DEFAULT_LOCAL_BASE_URL = "http://10.251.36.222:11434/v1"
 
 
 def resolve_model_id(model: str) -> str:

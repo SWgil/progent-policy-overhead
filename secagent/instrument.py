@@ -24,9 +24,9 @@ import time
 
 # ---------------------------------------------------------------- model routing
 
-#: Model id the local server answers to. vLLM reports the path or repo id it
-#: was launched with, so this must match ``vllm serve <id>`` exactly.
-DEFAULT_LOCAL_MODEL = os.getenv("SECAGENT_LOCAL_MODEL", "Qwen/Qwen3-8B")
+#: Model id the local server answers to. Ollama answers to the tag shown by
+#: ``ollama ps``; vLLM to the path or repo id it was launched with.
+DEFAULT_LOCAL_MODEL = os.getenv("SECAGENT_LOCAL_MODEL", "qwen3.8:27b")
 
 BASE_POLICY_MODEL = os.getenv("SECAGENT_POLICY_MODEL", DEFAULT_LOCAL_MODEL)
 
@@ -142,7 +142,7 @@ def unwrap_policies(parsed):
 
 def base_url():
     """Endpoint for OpenAI-compatible self-hosted models (vLLM, Ollama, ...)."""
-    return os.getenv("SECAGENT_POLICY_BASE_URL", "http://127.0.0.1:8000/v1")
+    return os.getenv("SECAGENT_POLICY_BASE_URL", "http://10.251.36.222:11434/v1")
 
 
 # ---------------------------------------------------------------- providers

@@ -63,7 +63,7 @@ is unchanged when none of the environment variables below are set.
 ```bash
 python analysis/probe_models.py <policy-model>       # check the server first
 
-LOCAL_BASE_URL=http://127.0.0.1:8000/v1 \
+LOCAL_BASE_URL=http://10.251.36.222:11434/v1 \
 LOCAL_MODEL=<agent-model> \
   ./run_sweep.sh m0-nodefense <policy-model> banking   # baseline, run this first
   ./run_sweep.sh m3-auto-approve <policy-model> banking
